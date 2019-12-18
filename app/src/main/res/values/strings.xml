@@ -13,16 +13,16 @@
 
     <string-array name="tripkinds">
 
-        <item>fdfsdf </item>
-        <item>dfsdfds</item>
-        <item>dfsd</item>
-        <item>ssss</item>
-        <item>fff</item>
-        <item>dggf</item>
-        <item>gfdgdf</item>
-        <item>fdgdfd</item>
-        <item>cvxcv</item>
-        <item>rerfef</item>
+        <item>Ski</item>
+        <item>Vacation</item>
+        <item>Hiking</item>
+        <item>Museums</item>
+        <item>Archiological Sites</item>
+        <item>Extreme Sports</item>
+        <item>Tracks</item>
+        <item>Water Sources</item>
+        <item>Events</item>
+        <item>All</item>>
 
     </string-array>
 
