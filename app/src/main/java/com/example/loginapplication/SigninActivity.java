@@ -1,14 +1,14 @@
 package com.example.loginapplication;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -51,7 +51,7 @@ public class SigninActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
-                    startActivity(new Intent(SigninActivity.this, UserActivity.class));
+                    startActivity(new Intent(SigninActivity.this, HomeActivity.class));
                 } else if ((Email.getText().toString().trim().compareTo("admin"))==0 && ( Password.getText().toString().trim().compareTo("admin1")==0)){
                     startActivity(new Intent(SigninActivity.this , AdminActivity.class));
                 } else{

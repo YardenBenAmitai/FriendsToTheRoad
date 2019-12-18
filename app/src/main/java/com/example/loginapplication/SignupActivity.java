@@ -1,14 +1,14 @@
 package com.example.loginapplication;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -74,19 +74,19 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     private boolean validate(){
-        boolean ans=false;
-        if ((full_name.getText().toString().isEmpty()) ||
-                (email.getText().toString().isEmpty()) ||
-                (date.getText().toString().isEmpty()) ||
-                (country.getText().toString().isEmpty()) ||
-                (password1.getText().toString().isEmpty()) ||
-                (password2.getText().toString().isEmpty())){
-            info.setText("please fill out all the given fields");
-        } else if(password1.getText().toString().trim().compareTo(password2.getText().toString().trim()) !=0){
-            info.setText("passwords don't match ");
-        } else{
-            ans=true;
-        }
-        return ans;
+            boolean ans=false;
+            if ((full_name.getText().toString().isEmpty()) ||
+                    (email.getText().toString().isEmpty()) ||
+                    (date.getText().toString().isEmpty()) ||
+                    (country.getText().toString().isEmpty()) ||
+                    (password1.getText().toString().isEmpty()) ||
+                    (password2.getText().toString().isEmpty())){
+                info.setText("please fill out all the given fields");
+            } else if(password1.getText().toString().trim().compareTo(password2.getText().toString().trim()) !=0){
+                info.setText("passwords don't match ");
+            } else{
+                ans=true;
+            }
+            return ans;
     }
 }

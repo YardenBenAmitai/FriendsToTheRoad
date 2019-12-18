@@ -1,3 +1,44 @@
 <resources>
     <string name="app_name">LoginApplication</string>
+    <string name="intro">
+        <![CDATA[In this app you can see which other travelers are interested in similar trips to yours.\n
+        you can connect with them, correspond with them and manage your travel together!\n
+        \n
+        In this app, we will not allow the use of improper language and selling travel items.\n
+        \n
+        Please note that the minimum age to use the app is 18.\n
+        \n
+        The use of this app is on your own responsibility.]]></string>
+
+
+    <string-array name="tripkinds">
+
+        <item>fdfsdf </item>
+        <item>dfsdfds</item>
+        <item>dfsd</item>
+        <item>ssss</item>
+        <item>fff</item>
+        <item>dggf</item>
+        <item>gfdgdf</item>
+        <item>fdgdfd</item>
+        <item>cvxcv</item>
+        <item>rerfef</item>
+
+    </string-array>
+
+    <string-array name="areakinds">
+
+        <item>Ramat Hagolan</item>
+        <item>Gush Dan</item>
+        <item>Jerusalem and surroundings</item>
+        <item>Kineret</item>
+        <item>Beer Sheva and surroundings</item>
+        <item>South</item>
+        <item>Eilat</item>
+        <item>North</item>
+        <item>All</item>
+
+    </string-array>
+
+
 </resources>
