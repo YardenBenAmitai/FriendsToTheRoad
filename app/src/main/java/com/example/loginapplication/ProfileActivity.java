@@ -20,13 +20,13 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private TextView email;
-    private TextView signin_role;
-    private EditText name;
-    private EditText about_me;
-    private ImageView profile_picture;
-    private Button update;
-    private ImageView back_home;
+    TextView email;
+    TextView signin_role;
+    EditText name;
+    EditText about_me;
+    ImageView profile_picture;
+    Button update;
+   ImageView back_home;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,15 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(new Intent(ProfileActivity.this, HomeActivity.class));
             }
         });
+
+        profile_picture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ProfileActivity.this, AvatarPictureActivity.class));
+            }
+        });
+
+
         final DatabaseReference ref=FirebaseDatabase.getInstance().getReference("Users")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         email.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());
@@ -97,9 +106,6 @@ public class ProfileActivity extends AppCompatActivity {
                 validate();
             }
         });
-
-
-
     }
 
     protected void validate(){
