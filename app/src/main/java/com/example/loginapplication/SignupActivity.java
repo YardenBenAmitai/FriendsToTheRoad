@@ -21,7 +21,6 @@ public class SignupActivity extends AppCompatActivity {
     private EditText full_name;
     private EditText email;
     private EditText date;
-    private EditText country;
     private EditText password1;
     private EditText password2;
     private TextView info;
@@ -37,7 +36,6 @@ public class SignupActivity extends AppCompatActivity {
         full_name= findViewById(R.id.fullname);
         email= findViewById(R.id.email_ad);
         date= findViewById(R.id.date);
-        country= findViewById(R.id.country);
         password1= findViewById(R.id.pass1);
         password2= findViewById(R.id.pass2);
         info= findViewById(R.id.msg);
@@ -56,10 +54,7 @@ public class SignupActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
                                 UserProfile user=new UserProfile(
-                                        full_name.getText().toString().trim(),
-                                        date.getText().toString(),
-                                        country.getText().toString()
-                                );
+                                        full_name.getText().toString().trim(), date.getText().toString());
                                 FirebaseDatabase.getInstance().getReference("Users")
                                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                         .setValue(user);
@@ -78,7 +73,6 @@ public class SignupActivity extends AppCompatActivity {
             if ((full_name.getText().toString().isEmpty()) ||
                     (email.getText().toString().isEmpty()) ||
                     (date.getText().toString().isEmpty()) ||
-                    (country.getText().toString().isEmpty()) ||
                     (password1.getText().toString().isEmpty()) ||
                     (password2.getText().toString().isEmpty())){
                 info.setText("please fill out all the given fields");

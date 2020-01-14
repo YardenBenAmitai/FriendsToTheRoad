@@ -4,11 +4,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 
 public class HomeActivity extends AppCompatActivity {
 
+    private String role="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,27 +27,46 @@ public class HomeActivity extends AppCompatActivity {
 
         Button profile= findViewById(R.id.b_profile);
         Button newTrip= findViewById(R.id.b_newTrip);
-        Button search= findViewById(R.id.b_search);
+        Button map= findViewById(R.id.b_search);
         Button chats= findViewById(R.id.b_chats);
+        ImageButton signout= findViewById(R.id.signout_b);
+
+        FirebaseDatabase.getInstance().getReference()
+                .child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("signin_role")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                role= dataSnapshot.getValue(String.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(new Intent(HomeActivity.this, ProfileActivity.class));
+                startActivity(new Intent(HomeActivity.this, ProfileActivity.class));
             }
         });
 
         newTrip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this, UserActivity.class));
+                if(role.compareTo("Junior Traveler")==0) {
+                    startActivity(new Intent(HomeActivity.this, SearchTripActivity.class));
+                } else{
+                    startActivity(new Intent(HomeActivity.this, NewTripActivity.class));
+                }
             }
         });
 
-        search.setOnClickListener(new View.OnClickListener() {
+        map.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(new Intent(HomeActivity.this, SearchActivity.class));
+                startActivity(new Intent(HomeActivity.this, MyMapActivity.class));
             }
         });
 
@@ -45,6 +74,14 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //startActivity(new Intent(HomeActivity.this, ChatActivity.class));
+            }
+        });
+
+        signout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(HomeActivity.this, StartActivity.class));
             }
         });
     }

@@ -6,34 +6,36 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.FirebaseDatabase;
-
-public class UserActivity extends AppCompatActivity {
+public class SearchTripActivity extends AppCompatActivity {
 
     private Spinner tripSpinner;
     private Spinner areaSpinner;
-    private EditText msg;
-    private Button finished;
+    private Button search;
+    private ImageButton back_home;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user);
+        setContentView(R.layout.activity_search_trip);
 
-        msg= findViewById(R.id.msg);
-        finished= findViewById(R.id.b_start);
+        search = findViewById(R.id.b_search);
+        back_home= findViewById(R.id.back_b);
         tripSpinner = findViewById(R.id.tripkindspinner);
-        areaSpinner= findViewById(R.id.tripareaspinner);
+        areaSpinner = findViewById(R.id.tripareaspinner);
 
+        back_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SearchTripActivity.this, HomeActivity.class));
+            }
+        });
 
-
-        ArrayAdapter<String> tripAdapter = new ArrayAdapter<>(UserActivity.this, android.R.layout.simple_list_item_1,
+        ArrayAdapter<String> tripAdapter = new ArrayAdapter<>(SearchTripActivity.this, android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.tripkinds));
         tripAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         tripSpinner.setAdapter(tripAdapter);
@@ -51,7 +53,7 @@ public class UserActivity extends AppCompatActivity {
         });
 
 
-        ArrayAdapter<String> areaAdapter = new ArrayAdapter<>(UserActivity.this, android.R.layout.simple_list_item_1,
+        ArrayAdapter<String> areaAdapter = new ArrayAdapter<>(SearchTripActivity.this, android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.areakinds));
         areaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         areaSpinner.setAdapter(areaAdapter);
@@ -68,20 +70,14 @@ public class UserActivity extends AppCompatActivity {
             }
         });
 
-        finished.setOnClickListener(new View.OnClickListener() {
+        search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                NewTrip trip= new NewTrip(tripSpinner.getSelectedItem().toString(), areaSpinner.getSelectedItem().toString());
-                if(! msg.getText().toString().isEmpty()){
-                    trip.addMsg(msg.toString());
-                }
-                FirebaseDatabase.getInstance().getReference("NewTrips")
-                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                        .setValue(trip);
-                startActivity(new Intent(UserActivity.this, HomeActivity.class));
+                Intent intent= new Intent(SearchTripActivity.this, SearchListActivity.class);
+                intent.putExtra("KIND", tripSpinner.getSelectedItem().toString());
+                intent.putExtra("AREA", areaSpinner.getSelectedItem().toString());
+                startActivity(intent);
             }
         });
-
     }
 }

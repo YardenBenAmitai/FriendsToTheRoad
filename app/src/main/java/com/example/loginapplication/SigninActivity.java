@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +16,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class SigninActivity extends AppCompatActivity {
@@ -22,6 +26,8 @@ public class SigninActivity extends AppCompatActivity {
     private int counter=5;
     private EditText Email;
     private EditText Password;
+    private RadioButton radio_b;
+    private RadioGroup group;
     private Button Login;
     private FirebaseAuth firebaseAuth;
 
@@ -34,16 +40,24 @@ public class SigninActivity extends AppCompatActivity {
         message= findViewById(R.id.msg);
         Email = findViewById(R.id.etEmail);
         Password = findViewById(R.id.etPassword);
+        group=findViewById(R.id.radio_g);
         Login = findViewById(R.id.b_login);
         firebaseAuth= FirebaseAuth.getInstance();
-
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //set role
+                int selectedId= group.getCheckedRadioButtonId();
+                radio_b= findViewById(selectedId);
+
+                //proceed to authentication
                 validate();
             }
         });
+
     }
+
 
 
     private void validate(){
@@ -51,9 +65,11 @@ public class SigninActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
+                    DatabaseReference mDatabaseRef = FirebaseDatabase.getInstance().getReference();
+                    mDatabaseRef.child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                            .child("signin_role").setValue(radio_b.getText().toString());
+
                     startActivity(new Intent(SigninActivity.this, HomeActivity.class));
-                } else if ((Email.getText().toString().trim().compareTo("admin"))==0 && ( Password.getText().toString().trim().compareTo("admin1")==0)){
-                    startActivity(new Intent(SigninActivity.this , AdminActivity.class));
                 } else{
                     counter--;
                     if (counter==0){

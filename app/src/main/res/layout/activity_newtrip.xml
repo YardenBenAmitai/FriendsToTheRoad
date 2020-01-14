@@ -5,7 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background2"
-    tools:context=".UserActivity">
+    tools:context=".NewTripActivity">
+
+    <ImageButton
+        android:id="@+id/back_b"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@+id/logo"
+        android:background="?attr/selectableItemBackground"
+        android:tint="#8F0404"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/logo"
+        app:layout_constraintHorizontal_bias="0.434"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.045"
+        app:srcCompat="@android:drawable/ic_menu_revert" />
 
     <Spinner
         android:id="@+id/tripkindspinner"
@@ -35,7 +50,7 @@
         tools:visibility="visible" />
 
     <Button
-        android:id="@+id/b_start"
+        android:id="@+id/b_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="UPLOAD"
@@ -95,7 +110,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/logo"
         android:layout_width="208dp"
         android:layout_height="185dp"
         app:layout_constraintBottom_toBottomOf="parent"

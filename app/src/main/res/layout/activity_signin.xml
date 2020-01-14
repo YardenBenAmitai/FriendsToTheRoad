@@ -20,25 +20,24 @@
         app:layout_constraintHorizontal_bias="0.525"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etEmail"
-        app:layout_constraintVertical_bias="0.768" />
+        app:layout_constraintVertical_bias="0.362" />
 
     <Button
         android:id="@+id/b_login"
         android:layout_width="130dp"
         android:layout_height="49dp"
         android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
         android:text="LOGIN"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.427"
+        app:layout_constraintHorizontal_bias="0.414"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etPassword"
-        app:layout_constraintVertical_bias="0.416" />
+        app:layout_constraintVertical_bias="0.743" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/logo"
         android:layout_width="204dp"
         android:layout_height="196dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -60,7 +59,7 @@
         app:layout_constraintHorizontal_bias="0.525"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.46" />
+        app:layout_constraintVertical_bias="0.419" />
 
     <TextView
         android:id="@+id/msg"
@@ -71,5 +70,40 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/b_login"
         app:layout_constraintVertical_bias="0.324" />
+
+    <RadioGroup
+        android:id="@+id/radio_g"
+        android:layout_width="149dp"
+        android:layout_height="59dp"
+        app:layout_constraintBottom_toTopOf="@+id/b_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.589">
+
+        <RadioButton
+            android:id="@+id/role_b1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Junior Traveler" />
+
+        <RadioButton
+            android:id="@+id/role_b2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Master Traveler" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="I would like to sign in as:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etPassword"
+        app:layout_constraintVertical_bias="0.153" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

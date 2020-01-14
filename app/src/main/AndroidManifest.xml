@@ -9,13 +9,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HomeActivity"></activity>
-        <activity android:name=".UserActivity" />
+        <activity android:name=".MyMapActivity"></activity>
+        <activity android:name=".SearchListActivity" />
+        <activity android:name=".SearchTripActivity" />
+
+        <meta-data
+            android:name="com.google.android.gms.car.application"
+            android:resource="@xml/automotive_app_desc" />
+
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".NewTripActivity" />
         <activity android:name=".IntroductionActivity" />
         <activity android:name=".SignupActivity" />
-        <activity android:name=".AdminActivity" />
         <activity android:name=".SigninActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
