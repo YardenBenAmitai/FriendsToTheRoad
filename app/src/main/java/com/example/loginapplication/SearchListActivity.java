@@ -11,12 +11,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -116,41 +114,19 @@ public class SearchListActivity extends AppCompatActivity {
                 convertView.setTag(viewHolder);
 
 
-                viewHolder.b_join.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //saves the details of the trip to profile
 
-                        DatabaseReference ref= FirebaseDatabase.getInstance().getReference("Users")
-                                .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
-                        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                FirebaseDatabase.getInstance().getReference("Trips")
-                                        .child(tripID.get(position))
-                                        .child("participants").child(dataSnapshot.child("username").getValue().toString()).setValue("");
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                            }
-                        });
-
-                        Toast.makeText(getApplicationContext(), "the trip has been added to your map", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(SearchListActivity.this, MyMapActivity.class));
-                    }
-                });
 
 
             } else{
                 viewHolder= (ViewHolder) convertView.getTag();
 
             }
-            viewHolder.desc_tv.setText(desc.get(position));
-            viewHolder.tripid_tv.setText(tripID.get(position));
-            viewHolder.users_tv.setText(users.get(position));
-            viewHolder.msg_tv.setText(msg.get(position));
+
+            String[] items= getItem(position);
+            viewHolder.desc_tv.setText(items[0]);
+            viewHolder.tripid_tv.setText(items[1]);
+            viewHolder.users_tv.setText(items[2]);
+            viewHolder.msg_tv.setText(items[3]);
             return convertView;
         }
 

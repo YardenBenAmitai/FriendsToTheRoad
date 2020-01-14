@@ -16,7 +16,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
@@ -65,8 +64,8 @@ public class SigninActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
-                    DatabaseReference mDatabaseRef = FirebaseDatabase.getInstance().getReference();
-                    mDatabaseRef.child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                    FirebaseDatabase.getInstance().getReference()
+                            .child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .child("signin_role").setValue(radio_b.getText().toString());
 
                     startActivity(new Intent(SigninActivity.this, HomeActivity.class));

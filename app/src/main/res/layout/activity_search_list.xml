@@ -39,6 +39,7 @@
         android:id="@+id/listView_result"
         android:layout_width="374dp"
         android:layout_height="507dp"
+        android:background="#D7FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

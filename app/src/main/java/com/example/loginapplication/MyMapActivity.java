@@ -127,8 +127,6 @@ public class MyMapActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError error) {
             }
         });
-
-        adapter.notifyDataSetChanged();
     }
 
 
