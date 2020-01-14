@@ -60,16 +60,12 @@ public class SigninActivity extends AppCompatActivity {
 
 
     private void validate(){
-        firebaseAuth.signInWithEmailAndPassword(Email.getText().toString(), Password.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
+        firebaseAuth.signInWithEmailAndPassword(Email.getText().toString(), Password.getText().toString())
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()){
-                    FirebaseDatabase.getInstance().getReference()
-                            .child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                            .child("signin_role").setValue(radio_b.getText().toString());
-
-                    startActivity(new Intent(SigninActivity.this, HomeActivity.class));
-                } else{
+                if (!task.isSuccessful()){
                     counter--;
                     if (counter==0){
                         message.setText("No More Attempts\nSystem Locking Out");
@@ -77,7 +73,12 @@ public class SigninActivity extends AppCompatActivity {
                     } else{
                         message.setText(counter+" Attempts Remaining");
                     }
+                } else{
+                    FirebaseDatabase.getInstance().getReference()
+                            .child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                            .child("signin_role").setValue(radio_b.getText().toString());
 
+                    startActivity(new Intent(SigninActivity.this, HomeActivity.class));
                 }
             }
         });
