@@ -60,9 +60,9 @@
 
     <Button
         android:id="@+id/b_chats"
-        android:layout_width="175dp"
-        android:layout_height="72dp"
-        android:text="CHAT WITH FRIENDS"
+        android:layout_width="172dp"
+        android:layout_height="67dp"
+        android:text="MEMORIES"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
