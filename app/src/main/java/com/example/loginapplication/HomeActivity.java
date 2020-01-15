@@ -28,7 +28,7 @@ public class HomeActivity extends AppCompatActivity {
         Button profile= findViewById(R.id.b_profile);
         Button newTrip= findViewById(R.id.b_newTrip);
         Button map= findViewById(R.id.b_search);
-
+        Button gallery= findViewById(R.id.b_gallery);
         ImageButton signout= findViewById(R.id.signout_b);
 
         FirebaseDatabase.getInstance().getReference()
@@ -67,6 +67,13 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(HomeActivity.this, MyMapActivity.class));
+            }
+        });
+
+        gallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this, GalleryActivity.class));
             }
         });
 

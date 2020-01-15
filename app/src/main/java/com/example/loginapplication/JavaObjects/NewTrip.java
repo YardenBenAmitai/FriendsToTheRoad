@@ -1,4 +1,4 @@
-package com.example.loginapplication;
+package com.example.loginapplication.JavaObjects;
 
 public class NewTrip {
     //use UserUid() as string to identify users

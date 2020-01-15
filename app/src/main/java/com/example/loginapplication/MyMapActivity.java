@@ -41,7 +41,7 @@ public class MyMapActivity extends AppCompatActivity {
         expandableListView= findViewById(R.id.lvExp);
         back_home= findViewById(R.id.back_b);
 
-        listGroup= new ArrayList<String>();
+        listGroup= new ArrayList<>();
         listItem= new HashMap<>();
         initListData();
 
@@ -52,7 +52,7 @@ public class MyMapActivity extends AppCompatActivity {
             }
         });
 
-        adapter= new ExpAdapter(this);
+        adapter= new ExpAdapter(this, listGroup, listItem);
         expandableListView.setAdapter(adapter);
 
     }
@@ -91,11 +91,15 @@ public class MyMapActivity extends AppCompatActivity {
                                 index=0;
                             }
                             listItem.get(listGroup.get(index)).add(trip_info);
+                            adapter= new ExpAdapter(MyMapActivity.this, listGroup, listItem);
+                            expandableListView.setAdapter(adapter);
                         }
                         @Override
                         public void onCancelled(DatabaseError error) {
                         }
                     });
+                    adapter= new ExpAdapter(MyMapActivity.this, listGroup, listItem);
+                    expandableListView.setAdapter(adapter);
                 }
 
                 for (DataSnapshot dsp1 : dataSnapshot.child("TripsJoinedList").getChildren()) {
@@ -116,11 +120,15 @@ public class MyMapActivity extends AppCompatActivity {
                                 index=1;
                             }
                             listItem.get(listGroup.get(index)).add(trip_info);
+                            adapter= new ExpAdapter(MyMapActivity.this, listGroup, listItem);
+                            expandableListView.setAdapter(adapter);
                         }
                         @Override
                         public void onCancelled(DatabaseError error) {
                         }
                     });
+                    adapter= new ExpAdapter(MyMapActivity.this, listGroup, listItem);
+                    expandableListView.setAdapter(adapter);
                 }
             }
             @Override
@@ -131,32 +139,35 @@ public class MyMapActivity extends AppCompatActivity {
 
 
     private class ExpAdapter extends BaseExpandableListAdapter{
-
+        List<String> groups;
+        HashMap<String, List<String[]>> items;
         Context context;
 
-        public ExpAdapter(Context context){
+        public ExpAdapter(Context context, List<String> g, HashMap<String, List<String[]>> i){
             this.context=context;
+            this.groups=g;
+            this.items=i;
         }
 
         @Override
         public int getGroupCount() {
-            return listGroup.size();
+            return groups.size();
         }
 
         @Override
         public int getChildrenCount(int groupPosition) {
-            return listItem.get(listGroup.get(0)).size();
+            return items.get(groups.get(0)).size();
         }
 
         @Override
         public Object getGroup(int groupPosition) {
-            return listGroup.get(groupPosition);
+            return groups.get(groupPosition);
         }
 
         @Override
         public String[] getChild(int groupPosition, int childPosition) {
-            if(!listItem.get(listGroup.get(groupPosition)).isEmpty()){
-                return listItem.get(listGroup.get(groupPosition)).get(childPosition);
+            if(!items.get(groups.get(groupPosition)).isEmpty()){
+                return items.get(groups.get(groupPosition)).get(childPosition);
             }
             String[] err={"-1"};
             return err;
@@ -182,8 +193,7 @@ public class MyMapActivity extends AppCompatActivity {
 
             String group= (String) getGroup(groupPosition);
             if (convertView==null){
-                LayoutInflater layoutInflater= (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView= layoutInflater.inflate(R.layout.list_group, null);
+                convertView= LayoutInflater.from(context).inflate(R.layout.list_group, null);
             }
 
             TextView group_title= convertView.findViewById(R.id.list_title);
@@ -194,8 +204,7 @@ public class MyMapActivity extends AppCompatActivity {
         @Override
         public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
             if (convertView==null){
-                LayoutInflater layoutInflater= (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView= layoutInflater.inflate(R.layout.list_group_item, null);
+                convertView= LayoutInflater.from(context).inflate(R.layout.list_group_item, null);
             }
 
             String[] key= getChild(groupPosition, childPosition);
