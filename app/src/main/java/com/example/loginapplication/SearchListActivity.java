@@ -49,8 +49,9 @@ public class SearchListActivity extends AppCompatActivity {
             }
         });
 
-
-
+        listView= findViewById(R.id.listView);
+        CustomAdapter adapter= new CustomAdapter(SearchListActivity.this, R.layout.listview_layout);
+        listView.setAdapter(adapter);
 
     }
 
@@ -78,9 +79,8 @@ public class SearchListActivity extends AppCompatActivity {
 
                     }
                 }
-                listView= findViewById(R.id.listView);
-                CustomAdapter adapter= new CustomAdapter(SearchListActivity.this, R.layout.listview_layout);
-                listView.setAdapter(adapter);
+
+
 
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override

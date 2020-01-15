@@ -3,7 +3,7 @@ package com.example.loginapplication;
 public class UserProfile {
     public String username;
     public String date_of_birth;
-
+    public String avatar_file_path="";
     public String signin_role="";
     public String TripsCreatedList="";
     public String TripsJoinedList= "";
@@ -14,6 +14,5 @@ public class UserProfile {
         this.date_of_birth = date_of_birth;
     }
 
-    public void assign_role (String r) {signin_role=r;}
 
 }

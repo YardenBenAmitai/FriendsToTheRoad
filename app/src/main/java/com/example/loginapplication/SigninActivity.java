@@ -57,8 +57,6 @@ public class SigninActivity extends AppCompatActivity {
 
     }
 
-
-
     private void validate(){
 
         firebaseAuth.signInWithEmailAndPassword(Email.getText().toString(), Password.getText().toString())
